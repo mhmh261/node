@@ -105,7 +105,7 @@ V8_EXPORT_PRIVATE Result<const FunctionSig*> DecodeWasmSignatureForTesting(
 // Decodes the bytes of a wasm function between
 // {function_start} and {function_end}.
 V8_EXPORT_PRIVATE FunctionResult DecodeWasmFunctionForTesting(
-    const WasmFeatures& enabled, Zone* zone, const ModuleWireBytes& wire_bytes,
+    const WasmFeatures& enabled, Zone* zone, ModuleWireBytes wire_bytes,
     const WasmModule* module, const byte* function_start,
     const byte* function_end, Counters* counters);
 
@@ -155,8 +155,7 @@ class ModuleDecoder {
 
   bool CheckFunctionsCount(uint32_t functions_count, uint32_t error_offset);
 
-  void DecodeFunctionBody(uint32_t index, uint32_t size, uint32_t offset,
-                          bool verify_functions = true);
+  void DecodeFunctionBody(uint32_t index, uint32_t size, uint32_t offset);
 
   ModuleResult FinishDecoding();
 

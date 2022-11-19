@@ -177,9 +177,8 @@ void ModuleDecoder::DecodeSection(SectionCode section_code,
 }
 
 void ModuleDecoder::DecodeFunctionBody(uint32_t index, uint32_t length,
-                                       uint32_t offset,
-                                       bool validate_functions) {
-  impl_->DecodeFunctionBody(index, length, offset, validate_functions);
+                                       uint32_t offset) {
+  impl_->DecodeFunctionBody(index, length, offset);
 }
 
 void ModuleDecoder::StartCodeSection(WireBytesRef section_bytes) {
@@ -224,7 +223,7 @@ ConstantExpression DecodeWasmInitExprForTesting(const WasmFeatures& enabled,
 }
 
 FunctionResult DecodeWasmFunctionForTesting(
-    const WasmFeatures& enabled, Zone* zone, const ModuleWireBytes& wire_bytes,
+    const WasmFeatures& enabled, Zone* zone, ModuleWireBytes wire_bytes,
     const WasmModule* module, const byte* function_start,
     const byte* function_end, Counters* counters) {
   size_t size = function_end - function_start;
